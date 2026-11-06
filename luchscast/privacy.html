@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luchscast Privacy</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1d1d1f; --muted: #6e6e73; --bg: #fbfbfd; --accent: #b4612a; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f5f5f7; --muted: #a1a1a6; --bg: #111; --accent: #e08a50; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 56px 20px; }
+  h1 { font-size: 2rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+  h3 { font-size: 1rem; margin: 20px 0 6px; }
+  p, li { margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <!-- The same text as documentation/play/privacy-policy.md, the one source: change that first, then this page. -->
+  <h1>Luchscast privacy policy</h1>
+  <p class="muted">Luchscast · last updated 6 November 2026</p>
+  <p>This policy covers Luchscast for Android phones, Wear OS watches, iPhone, iPad, Mac and Apple Watch. Luchscast is a private app made by one person, Peter Leary (the Play developer account "Disco Unicorn"), referred to below as "I". It isn't offered to the public: it's installed only by me and one invited tester, through Google Play's internal testing and Apple's TestFlight.</p>
+  <p><strong>Nothing you do in Luchscast reaches me.</strong> I don't run a server, there are no Luchscast accounts, and the apps contain no analytics, crash reporting or advertising of their own. On Android, Luchscast uses some Google services that come with Android; they send Google a small amount of diagnostic data, as described below. On Apple devices it uses only Apple's system services. You use the app at your own risk.</p>
+  <h2>What stays on your device</h2>
+  <p>Your library, listening positions, Up Next, Stations, downloads, transcripts, chapters, ad marks and settings are stored on your device (and the episodes you copy to your watch, on the watch).</p>
+  <ul>
+    <li><strong>Transcripts, chapters and ad finding</strong> are worked out on the device: on Android with a speech model that runs on the phone, and with Gemini Nano (on phones that have it) for chapter titles; on iPhone, iPad and Mac with Apple's speech recognition on the device. The audio never leaves it, and no transcript is sent to an AI service.</li>
+    <li><strong>Listening stats</strong> (time listened, time saved) are counted on the device and aren't sent anywhere.</li>
+    <li><strong>New-episode notifications</strong> are made by the app from the feeds it fetches itself. There is no push server, so nobody learns which shows you asked to hear about.</li>
+    <li><strong>Searching your transcripts</strong> happens on the device.</li>
+    <li><strong>Links to private feeds</strong> (for example Supercast or Patreon) contain a personal password, so they are kept in the device's secure storage: an encrypted file with a key held by Android's secure key store, or the Keychain on Apple devices.</li>
+  </ul>
+  <h2>Sync through your own Google Drive (optional, off until you turn it on)</h2>
+  <p>If you turn on sync, you sign in with your Google account and the app asks for access to its own hidden app-data folder in your Google Drive (the <code>drive.appdata</code> permission). It can't see any other files in your Drive. The app uses your account only to reach that folder. On Apple devices the sign-in happens in the system's web sign-in sheet, and the app keeps only the resulting tokens, in the Keychain.</p>
+  <p>What goes into the folder is encrypted on your device (AES-256-GCM) with a key that only your devices hold. The key never goes to Drive, so neither Google nor I can read the files. They hold your shows (with their feed links, private ones included), listening positions, played and saved marks, Up Next, Stations, ad marks and your corrections to them, and some settings. Transcripts made on a device can be shared the same way, one encrypted file each with a random-looking name, so your other devices needn't make them again. Audio is never uploaded.</p>
+  <p><strong>Start over</strong> in the app's sync settings makes a new key and deletes every file in the folder. Turning sync off stops that device syncing. To delete the folder yourself, open Google Drive on the web, then <strong>Settings › Manage apps › Luchscast › Options › Delete hidden app data</strong>.</p>
+  <p>Luchscast's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+  <h2>Backups</h2>
+  <p>On the Android phone, Android's own backup to your Google account includes Luchscast's library, settings and private feed links only when that backup is end-to-end encrypted (on a phone with a screen lock). Otherwise Luchscast's library isn't in the cloud backup. Downloads, transcripts and the speech model are never backed up.</p>
+  <p>On the Wear OS watch, the system's backup may include the list of episodes copied to the watch (their titles, artwork links and your place in them). It never includes feed links: the watch doesn't have them.</p>
+  <p>On Apple devices, Luchscast's library and downloads, and the Apple Watch's episodes, are kept out of iCloud Backup. Sync brings the library back.</p>
+  <h2>Who the app talks to</h2>
+  <p>None of these servers is mine.</p>
+  <h3>Podcast hosts</h3>
+  <p>Feeds, episodes, artwork, chapters and transcripts are downloaded straight from the servers the podcasts use, as in any podcast app. Those servers see the request, as any website would: your IP address and the app's name. Some podcasts insert ads chosen at that moment by an ad server; that is between you and the podcast. Some podcasts still serve their feeds or audio over plain HTTP; the app uses HTTPS whenever a link offers it.</p>
+  <h3>Apple's public podcast directory (all the apps)</h3>
+  <p>Searching the directory, the charts in New, and importing from Apple Podcasts links send your search words and your device's country to Apple's public podcast directory (itunes.apple.com). <strong>You Might Like</strong> sends it the names of up to ten public shows you follow, to find similar ones. No account is involved, and private shows are never sent. You can turn You Might Like off in <strong>Settings › Appearance</strong> on Android or <strong>Settings › You Might Like</strong> on Apple devices; then nothing is sent for it.</p>
+  <h3>The speech model (Android)</h3>
+  <p>To make transcripts on the phone, the app downloads a speech model (Parakeet, about 670 MB) once, when you ask for it, from Hugging Face (huggingface.co). Hugging Face sees that download, as with any file.</p>
+  <h3>Google services (Android and Wear OS)</h3>
+  <ul>
+    <li><strong>Google Cast</strong> (Chromecast): Google's Cast software sends Google anonymised data about its use: its interactions with Cast devices, device and app details, and performance data. Google says it's kept for a short time and can't be turned off or deleted. See Google's <a href="https://developers.google.com/cast/docs/android_sender/data_disclosure">Cast SDK data disclosure</a>.</li>
+    <li><strong>Google ML Kit</strong>: Gemini Nano, which writes chapter titles on phones that have it, and the scanner for the sync QR code both run on the phone; transcripts and the QR code stay there. ML Kit sends Google diagnostic data: device and app details, an installation identifier, performance figures and error codes. See Google's <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit data disclosure</a>.</li>
+    <li><strong>Wear OS</strong>: the phone and the watch exchange your library, playback commands and episodes through Google's Wear OS connection, which Google can relay through its servers when the watch is away from the phone.</li>
+    <li><strong>Google sign-in</strong>, only if you turn on sync.</li>
+    <li><strong>Pause when you fall asleep</strong> (Pixel Watch, beta): the watch's Health Services tell Luchscast on the watch when you seem to fall asleep, which needs the Physical activity permission, and your heart rate, which needs the heart-rate permission. While your phone plays, the watch passes these to the Luchscast app on your phone over the Wear OS connection, and the phone uses them, in memory, only to decide when to fade and pause. Neither is stored, shown or sent anywhere else.</li>
+  </ul>
+  <h3>Apple system services (iPhone, iPad, Mac and Apple Watch)</h3>
+  <p>Speech recognition, AirPlay, notifications and the connection between the iPhone and the Apple Watch are parts of Apple's system, under Apple's privacy policy. The system downloads its own speech model; transcripts are made on the device. The Apple Watch app reads no health data.</p>
+  <h2>Things you choose to send</h2>
+  <ul>
+    <li><strong>Sharing</strong> a moment or a quote sends what you share to the app you pick: the words, the show and episode, the time, and for public shows the episode's web page and a Luchscast link to that moment. A share from a private show is text only, with no link.</li>
+    <li><strong>OPML export</strong> writes your list of shows to a file you choose. Private feeds are left out unless you include them; if you do, the file contains their links, which work like passwords.</li>
+  </ul>
+  <h2>Permissions</h2>
+  <ul>
+    <li><strong>Notifications</strong>: playback controls, new-episode alerts you ask for, and progress while episodes are transcribed or copied to the watch.</li>
+    <li><strong>Camera</strong> (Apple devices): to scan the sync QR code from your other device. On Android, Google's code scanner does this without a camera permission.</li>
+    <li><strong>Physical activity</strong> (Wear OS watch only): to know when you fall asleep, as above.</li>
+    <li><strong>Heart rate</strong>, including in the background (Wear OS watch only): to check you really are asleep, as above.</li>
+    <li><strong>Network access</strong>: to fetch podcasts and, if you use them, sync and the directory.</li>
+  </ul>
+  <h2>Children</h2>
+  <p>Luchscast isn't aimed at children.</p>
+  <h2>Deleting your data</h2>
+  <p>Everything Luchscast keeps is on your devices or in your own Drive: uninstalling the app deletes what's on the device, and the Drive folder can be deleted as described above. I hold nothing about you, so there is nothing for me to delete.</p>
+  <h2>Changes</h2>
+  <p>If this policy changes, the new version will be published at the same address with a new date.</p>
+  <h2>Contact</h2>
+  <p>Peter Leary, <a href="mailto:peetleary@gmail.com">peetleary@gmail.com</a></p>
+</main>
+</body>
+</html>

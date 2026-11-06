@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luchscooks privacy policy</title>
+<meta name="description" content="What Luchscooks keeps, where it goes, and who the app talks to.">
+<style>
+  :root { color-scheme: light dark; --fg: #1d1d1f; --muted: #6e6e73; --bg: #fbfbfd; --rule: #e3e3e8; --accent: #2f6b45; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f5f5f7; --muted: #a1a1a6; --bg: #111; --rule: #2c2c2e; --accent: #7fbf94; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 660px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 6px; }
+  h2 { font-size: 1.25rem; margin: 36px 0 8px; padding-top: 20px; border-top: 1px solid var(--rule); }
+  h3 { font-size: 1.05rem; margin: 22px 0 6px; }
+  p, ul { margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
+  .lead { font-size: 1.1rem; }
+  a { color: var(--accent); }
+  code { font-size: 0.9em; }
+</style>
+</head>
+<body>
+<!-- Source: documentation/play/privacy-policy.md. Change that first, then this page, and keep them the same. -->
+<main>
+  <h1>Privacy policy</h1>
+  <p class="muted">Luchscooks for Android, Wear OS, iPhone and iPad · last updated 6 November 2026</p>
+
+  <p class="lead"><strong>Nothing you do in Luchscooks reaches me.</strong> There's no Luchscooks server and no account. The app contains no analytics, no crash reporting, no advertising and no tracking. Your saved recipes, notes, ratings and shopping list stay on your devices, and, if you turn on sync, in your own Google Drive, encrypted so that only your devices can read it.</p>
+  <p>The app does talk to other servers: the Guardian, to fetch recipes, and some of Google's services on Android. Two optional features on Android send text to Google or Anthropic, only when you choose them. They are listed below, with what each one sees. Luchscooks is made by one person, Peter Leary ("I" below). You use the app at your own risk.</p>
+  <p>This policy covers the Luchscooks apps for Android phones, Wear OS watches, iPhone and iPad. They are private: distributed only to a few people I invite, through Google Play's internal testing and Apple's TestFlight. The sections below describe the Android apps; <a href="#apple">the iPhone and iPad app</a> works the same way, with the differences listed there.</p>
+
+  <h2>What stays on your device</h2>
+  <p>The recipes the app fetches, your saved recipes, notes, star ratings, the days you cooked something, the shopping list (with your own items, ticks and "Always in the cupboard"), and your settings are stored in the app's own storage on your phone.</p>
+  <ul>
+    <li><strong>Timers</strong> are kept on the phone (and, while they run, on your watch). They are never synced or sent anywhere else.</li>
+    <li><strong>Searching</strong> your recipes happens on the phone, including the on-device model's help in understanding what you typed.</li>
+    <li><strong>About this recipe</strong> and <strong>Ask about this step</strong> are answered on the phone: first by the app's own rules (conversions, the step's amounts and times, fixed food-safety answers), then by Gemini Nano, Google's model that runs on the phone itself, on phones that have it. What you ask and the answers stay on the phone.</li>
+    <li><strong>Listen</strong> reads recipes aloud on the phone with the system's voice, or with a natural voice you download once (below).</li>
+    <li><strong>Speaking a search or a question</strong>: the microphone button hands over to your phone's own speech recogniser (the app asks it to work offline where it can). Luchscooks never gets microphone access itself; what happens to the sound is up to that recogniser, under its own policy.</li>
+    <li><strong>The sync key</strong> is kept in a file encrypted with a key held in Android's secure key store, in a folder that is never backed up.</li>
+  </ul>
+
+  <h2>Sync through your own Google Drive (optional)</h2>
+  <p>Sync is off until you turn it on. Then you sign in to Google, and the app asks for one permission: its own hidden app-data folder in your Google Drive (<code>drive.appdata</code>). It cannot see, open or change any other file in your Drive.</p>
+  <ul>
+    <li>Every file is <strong>encrypted on your device before it's uploaded</strong> (AES-256-GCM), with a key made on your device that only your devices hold. The key never goes to Drive, so neither Google nor I can read the files. Files are padded, so their size says little about what is in them, and their names hold only random identifiers.</li>
+    <li>Inside the encryption are your saved recipes, notes, ratings, the days you cooked, the shopping list (recipes, servings, ticks, your own items, the cupboard), the synced settings (theme, colours, units) and the name of each of your devices (as set in its settings, so you can tell them apart).</li>
+    <li>To save a second device fetching every recipe again, the recipes one device has fetched from the Guardian are kept in the same folder, sealed the same way, for your own devices only.</li>
+    <li>You add a device by scanning a QR code or typing a recovery code. Keep the recovery code safe: without it, a new device can't read your files.</li>
+    <li><strong>Start over</strong> makes a new key and deletes every Luchscooks file in the folder. Turning sync off stops that device syncing. To delete the folder yourself, open Google Drive on the web, then <strong>Settings › Manage apps › Luchscooks › Options › Delete hidden app data</strong>.</li>
+  </ul>
+  <p>Luchscooks's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. The app uses Drive access only to store and read its own sync files for you, and never shows, sells or transfers it to anyone.</p>
+
+  <h2>Android backup</h2>
+  <p>On the phone, Android's own backup to your Google account may include the app's database (your saved recipes, notes, ratings, the shopping list and the fetched recipes) and settings, under Google's backup terms. The sync key and this device's sync identifier are never backed up. The watch app is never backed up.</p>
+
+  <h2>Who the app talks to</h2>
+  <p>None of these servers is mine. Like any website, each one sees the request, including your IP address and the app's name and version.</p>
+
+  <h3>The Guardian</h3>
+  <ul>
+    <li><strong>Feast</strong> (<code>recipes.guardianapis.com</code>): the list of recipes and each recipe, fetched every few hours and, for the rest of the catalogue, on Wi-Fi while charging. The requests carry no information about you.</li>
+    <li><strong>The Content API</strong> (<code>content.guardianapis.com</code>), with the app's API key: to check that a recipe is still published and to read its article's introduction. It sends the article's identifier, nothing about you.</li>
+    <li><strong>Pictures</strong> come from the Guardian's picture server (<code>i.guim.co.uk</code>).</li>
+    <li><strong>Open on the Guardian</strong> opens the recipe's page in your browser, under the Guardian's own policy.</li>
+  </ul>
+
+  <h3>Google</h3>
+  <ul>
+    <li><strong>Google sign-in and Google Drive</strong>, only if you turn on sync, as described above.</li>
+    <li><strong>Gemini Nano</strong> (through Google's ML Kit) runs on the phone; your recipes and questions stay there. <strong>Google's code scanner</strong> reads the sync QR code when you add a device; it runs in Google Play services, the camera picture stays on the phone, and Luchscooks itself never gets camera access. ML Kit sends Google diagnostic information (device and app details, an installation identifier, performance figures and error codes) to keep the service working. See Google's <a href="https://developers.google.com/ml-kit/android-data-disclosure">ML Kit data disclosure</a>.</li>
+    <li><strong>Wear OS</strong>: the phone sends your watch the running timers (their names and when they end), the step you are cooking and the shopping list; the watch sends back what you tap (start, stop or add a minute to a timer, the next or previous step, ticking an item). This goes through Google's Wear OS connection in Google Play services, which Google can relay through its servers when the watch isn't near the phone. The watch app itself has no internet access.</li>
+    <li><strong>The cloud voice</strong> (optional, off unless you choose it in Settings): Listen then sends the text it is reading (the recipe, and any answer it speaks) to Google Cloud Text-to-Speech (<code>texttospeech.googleapis.com</code>) and plays back the voice Google returns. Nothing else is sent. See <a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud's privacy notice</a>.</li>
+  </ul>
+
+  <h3>Anthropic (Ask Claude, optional)</h3>
+  <p>Ask Claude is off by default. If you turn it on in <strong>Settings › Kitchen</strong>, then when the phone's own model can't answer a question, the app offers to ask Claude instead, and says first what it will send. Only when you tap <strong>Ask Claude</strong> does it send Anthropic's API the recipe's title, the step and its ingredients (or, for a question about the whole recipe, its ingredients and method) and your question. Anthropic's answer is checked by the app the same way as the phone's. See <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.</p>
+
+  <h3>The natural voice</h3>
+  <p>If you choose the natural voice, its model (Kokoro, about 350 MB) is downloaded once, when you ask for it, from the sherpa-onnx project's releases on GitHub (<code>github.com</code>). GitHub sees the download, as with any file.</p>
+
+  <h2>Things you choose to send</h2>
+  <ul>
+    <li><strong>Sharing</strong> a recipe sends its title and link to the app you pick; sharing the shopping list sends the list as text. Nothing else.</li>
+  </ul>
+
+  <h2 id="apple">The iPhone and iPad app</h2>
+  <p>It keeps the same things on the device, fetches recipes from the same Guardian servers in the same way, and syncs through your own Google Drive in the same way, with the same encryption, so the sections above apply, with these differences:</p>
+  <ul>
+    <li><strong>About this recipe</strong> is written by Apple's on-device model (Apple Intelligence), on devices that have it. The recipe and the words stay on the device. There is no Ask about this step, Ask Claude or Listen on iPhone and iPad yet, so this app sends nothing to Anthropic and nothing to Google Cloud Text-to-Speech.</li>
+    <li><strong>Signing in to Google</strong> for sync opens Google's own sign-in page in a system window. The sync key and Google's sign-in token are kept in the iOS Keychain, on this device only.</li>
+    <li><strong>Adding a device</strong>: the app asks for the camera to scan the sync QR code with Apple's scanner; the picture stays on the device. Or pick a screenshot or photo of the code in the system's photo picker, which gives the app only the picture you choose.</li>
+    <li><strong>Timers</strong> stay on the device, with a Live Activity on the lock screen and in the Dynamic Island. They are never synced.</li>
+    <li><strong>Background refresh</strong>: iOS may wake the app now and then to fetch new recipes and to sync.</li>
+    <li><strong>Your device's name</strong> in the sync files is the one iOS gives the app, usually just "iPhone" or "iPad".</li>
+    <li><strong>Backup</strong>: iCloud or computer backups of the device may include the app's database (your saved recipes, notes, ratings, the shopping list and the fetched recipes) and settings, under Apple's terms. The Keychain entries are for this device only and aren't restored onto another one.</li>
+    <li><strong>Permissions</strong>: the camera (only to scan a sync QR code) and notifications (a timer's ring). The app doesn't ask for your location, contacts, microphone or photo library.</li>
+    <li>The app contains no analytics, crash reporting, advertising or tracking; its privacy manifest declares no tracking and no collected data.</li>
+  </ul>
+
+  <h2>Permissions on Android</h2>
+  <ul>
+    <li><strong>Internet</strong>: to fetch recipes and pictures, the voice model, and to sync.</li>
+    <li><strong>Notifications</strong>: the running timers and their ring, and Listen's playback controls.</li>
+    <li><strong>Alarms and reminders, full-screen alerts, vibration</strong>: so a timer rings on time, over the lock screen, even when the app is closed; and so timers are set again after the phone restarts.</li>
+    <li><strong>Foreground services</strong>: so timers keep counting and Listen keeps reading with the screen off.</li>
+  </ul>
+  <p>Luchscooks doesn't ask for your location, contacts, camera, microphone, photos or files, and doesn't use the advertising ID.</p>
+
+  <h2>Deleting your data</h2>
+  <p>Uninstalling the app deletes everything it stores on the device. Sync files are deleted with Start over, or from Google Drive as above. I hold nothing about you, so there's nothing for me to delete.</p>
+
+  <h2>Children</h2>
+  <p>Luchscooks is meant for adults and isn't aimed at children.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the new version will be on this page with a new date.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:peetleary@gmail.com">peetleary@gmail.com</a></p>
+</main>
+</body>
+</html>
