@@ -30,11 +30,11 @@
   <p>The app does talk to other servers: the publications, to fetch the news, and some of Google's services. They are listed below, with what each one sees.</p>
 
   <h2>What stays on your device</h2>
-  <p>The lists and articles the app fetches, your read marks, saved stories, highlights and notes, reading places, chosen sections, settings, and the searchable archive of the articles you've opened are stored in the app's own storage on your device.</p>
+  <p>The lists and articles the app fetches, your read marks, saved stories, highlights and notes, reading places, chosen sections, settings, the article summaries you asked for, and the searchable archive of the articles you've opened are stored in the app's own storage on your device.</p>
   <ul>
     <li><strong>Reading aloud</strong> (Listen) happens on the device, with the system's voice or a voice model you download once. Nothing you listen to is sent anywhere.</li>
     <li><strong>Searching</strong> your archive happens on the device.</li>
-    <li><strong>Keys and sign-ins.</strong> The app reads the Guardian with an API key: one built into the app, or your own if you add one. That key, your own Gemini key if you add one, your Stratechery feed address, your Walliser Bote sign-in token, the session cookies from signing in to the FT, the Economist, The Athletic or the NZZ, and the sync key are kept in the device's secure storage (on Android, files encrypted with an Android Keystore key; on Apple devices, the Keychain), never in a backup.</li>
+    <li><strong>Keys and sign-ins.</strong> The app reads the Guardian with an API key: one built into the app, or your own if you add one. That key, your own Gemini and Claude (Anthropic) keys if you add them, your Stratechery feed address, your Walliser Bote sign-in token, the session cookies from signing in to the FT, the Economist, The Athletic or the NZZ, and the sync key are kept in the device's secure storage (on Android, files encrypted with an Android Keystore key; on Apple devices, the Keychain), never in a backup.</li>
     <li><strong>Android backup.</strong> Android's own backup to your Google account includes Luchsreader's database (read marks, saved stories, highlights and notes, sections and the archive) only when that backup is end-to-end encrypted; otherwise Luchsreader leaves it out. Moving to a new phone with a cable or Wi-Fi transfer copies it too. The watch app is never backed up.</li>
   </ul>
 
@@ -42,7 +42,7 @@
   <p>Sync is off until you turn it on. Then you sign in to Google, and the app asks for one permission: its own hidden app-data folder in your Google Drive (<code>drive.appdata</code>). It cannot see, open or change any other file in your Drive.</p>
   <ul>
     <li>Every file is <strong>encrypted on your device before it's uploaded</strong> (AES-256-GCM), with a key made on your device that only your devices have. The key never goes to Drive, so neither Google nor I can read the files. Files are padded so their size doesn't show how much you've read, and their names don't reveal the device or the day.</li>
-    <li>Inside the encryption are your read marks, saved stories, highlights and notes, reading places, chosen sections and synced settings, the text of your archive, the name of each of your devices (as set in its settings, so you can tell them apart), and the keys and sign-ins above (so a new device is signed in too). Your Walliser Bote password is never stored or synced: it is used once to sign in, and only the token that comes back is kept.</li>
+    <li>Inside the encryption are your read marks, saved stories, highlights and notes, reading places, chosen sections and synced settings, the summaries you asked for (their points and suggested questions, which model wrote them; a summary goes after 60 days unless the story is saved), the text of your archive, the name of each of your devices (as set in its settings, so you can tell them apart), and the keys and sign-ins above (so a new device is signed in too). Your Walliser Bote password is never stored or synced: it is used once to sign in, and only the token that comes back is kept.</li>
     <li>You add a device by scanning a QR code or typing a recovery code. Keep the recovery code safe: without it, a new device can't read your files.</li>
     <li>If the app ever finds an unencrypted file in its folder, it deletes it.</li>
     <li><strong>Start over</strong> makes a new key and deletes every Luchsreader file in the folder. Turning sync off stops that device syncing. To delete the folder yourself, open Google Drive on the web, then <strong>Settings › Manage apps › Luchsreader › Options › Delete hidden app data</strong>.</li>
@@ -67,10 +67,12 @@
   <h3>Finance</h3>
   <p>The Finance page and widget fetch public prices: from Yahoo Finance (<code>query1.finance.yahoo.com</code>) for markets, and the European Central Bank's daily reference rates through Frankfurter (<code>api.frankfurter.dev</code>). They send only which prices they want; nothing about you, and your watchlist stays on your devices.</p>
 
-  <h3>Translation</h3>
+  <h3>Translation, summaries and questions (AI)</h3>
+  <p>Settings › AI chooses who does each job: the model on your device, Claude (Anthropic) with your own key, or Gemini (Google) with your own key. Nothing is sent to either until you add a key, and then only when you tap Summarise, ask a question, or translate an article (with the DE ↔ EN toggle, or as it opens when German articles open in English) with that model chosen. The first time you use each of them, the app says what it will send and to whom, and sends nothing unless you tap Send (you can turn this off in Settings › AI). A summary is kept with the article and synced (above); your questions and their answers stay on the device only while the article is open, and go when you close the box.</p>
   <ul>
-    <li>SRF, NZZ and Walliser Bote articles can be read in English. If you add your own Gemini API key in Settings (it syncs to your other devices with the other keys), the article's text, with the matching terms from your Swiss glossary, is sent to Google's Gemini API (<code>generativelanguage.googleapis.com</code>) under your key and Google's terms for it. Nothing else about you is sent.</li>
-    <li>Without a key, the translation is made on the device and the text isn't sent: on Android by Gemini Nano, part of Android, which the app reaches through Google's ML Kit (it may send Google the same kind of diagnostic information as the code scanner, below); on Apple devices by Apple's on-device Foundation Models.</li>
+    <li>SRF, NZZ and Walliser Bote articles can be read in English. If you add your own Gemini API key in Settings › AI (it syncs to your other devices with the other keys), the article's text, with the matching terms from your Swiss glossary, is sent to Google's Gemini API (<code>generativelanguage.googleapis.com</code>) under your key and Google's terms for it. This is so on Android and on Apple devices. If you choose Gemini Flash for summaries or questions, tapping Summarise or asking sends the article's text (and your question, with the earlier questions and answers about it) there in the same way. Nothing else about you is sent.</li>
+    <li><strong>Claude</strong> (optional): if you add your own Anthropic API key in Settings › AI (it syncs to your other devices with the other keys), then when you tap Summarise, ask a question about an article, or translate one with a Claude model chosen, that article's text (and your question, and earlier questions and answers about it) is sent to Anthropic's API (<code>api.anthropic.com</code>) under your key and Anthropic's terms for it, and the answer comes back. Saving the key checks it with Anthropic, which sends the key and nothing else. Subscriber-only articles (FT, the Economist, the NZZ, The Athletic, the Walliser Bote) are sent too unless you turn off "Send subscriber-only text". Nothing else about you is sent. The app counts, on the device, how many tokens it sent each model this month; that count isn't sent anywhere.</li>
+    <li>Without a key, or with the model on the device chosen, the work is done on the device and the text isn't sent: on Android by Gemini Nano, part of Android, which the app reaches through Google's ML Kit (it may send Google the same kind of diagnostic information as the code scanner, below); on Apple devices by Apple's on-device Foundation Models.</li>
   </ul>
 
   <h3>Google (Android)</h3>
@@ -85,11 +87,11 @@
   <p>A build of the app (Android or Apple) made with a Google Cloud key can also offer a cloud voice. Only when you choose it, the text being read is sent to Google Cloud Text-to-Speech (<code>texttospeech.googleapis.com</code>); nothing else is (no account, no article or position).</p>
 
   <h3>Apple devices</h3>
-  <p>The Apple apps include no analytics, advertising or other third-party SDK; they reach the services above (the publications, Google sign-in and Drive, Gemini with your key, and the Walliser Bote's Firebase sign-in and database) directly over HTTPS. Google sign-in uses the system's web sign-in sheet. Voices for reading aloud, background refresh, widgets and the Apple Watch connection are parts of Apple's system, under Apple's privacy policy.</p>
+  <p>The Apple apps include no analytics, advertising or other third-party SDK; they reach the services above (the publications, Google sign-in and Drive, Gemini and Claude with your keys, and the Walliser Bote's Firebase sign-in and database) directly over HTTPS. Google sign-in uses the system's web sign-in sheet. Voices for reading aloud, background refresh, widgets and the Apple Watch connection are parts of Apple's system, under Apple's privacy policy.</p>
 
   <h2>Permissions on Android</h2>
   <ul>
-    <li><strong>Internet</strong> and <strong>network state</strong>: to fetch the news, pictures, prices and the voice model, to translate with your key, and to sync.</li>
+    <li><strong>Internet</strong> and <strong>network state</strong>: to fetch the news, pictures, prices and the voice model, to translate, summarise and answer with your keys, and to sync.</li>
     <li><strong>Notifications</strong>: only for Listen's playback controls.</li>
     <li><strong>Foreground service (media playback) and keeping the device awake</strong>: so an article you're listening to carries on with the screen off.</li>
   </ul>
